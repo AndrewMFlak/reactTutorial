@@ -1,38 +1,21 @@
 import React from 'react';
 import Square from '../Square/Square';
+//helper function "calculateWinner" imported to use in handleClick event;
 import calculateWinner from '../calculateWinner/calculateWinner';
 
 class Board extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            //this.state.squares is an array of nine null elements
             squares: Array(9).fill(null),
             xIsNext: true,
         };
     }
     handleClick(i) {
-        //slice used to create a copy of the squares array
-        // function calculateWinner(squares) {
-        //     const lines = [
-        //       [0, 1, 2],
-        //       [3, 4, 5],
-        //       [6, 7, 8],
-        //       [0, 3, 6],
-        //       [1, 4, 7],
-        //       [2, 5, 8],
-        //       [0, 4, 8],
-        //       [2, 4, 6],
-        //     ];
-        //     for (let i = 0; i < lines.length; i++) {
-        //       const [a, b, c] = lines[i];
-        //       if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-        //         return squares[a];
-        //       }
-        //     }
-        //     return null;
-        //   }
-          
+        //this.state.squares.slice() used to create a new array to avoid mutating state directly 
         const squares = this.state.squares.slice();
+        console.log(squares);
         if(calculateWinner(squares)|| squares[i]) {
             return;
         }
@@ -51,26 +34,6 @@ class Board extends React.Component {
         );
     }
     render() {
-        // function calculateWinner(squares) {
-        //     const lines = [
-        //       [0, 1, 2],
-        //       [3, 4, 5],
-        //       [6, 7, 8],
-        //       [0, 3, 6],
-        //       [1, 4, 7],
-        //       [2, 5, 8],
-        //       [0, 4, 8],
-        //       [2, 4, 6],
-        //     ];
-        //     for (let i = 0; i < lines.length; i++) {
-        //       const [a, b, c] = lines[i];
-        //       if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-        //         return squares[a];
-        //       }
-        //     }
-        //     return null;
-        //   }
-          
         const winner = calculateWinner(this.state.squares);
         let status;
         if(winner) {
